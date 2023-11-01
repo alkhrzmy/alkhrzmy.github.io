@@ -1,26 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Buku_Kating_Gymnastiar_Al_K_07</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
-<title>Buku_Kating_Gymnastiar_Al_K_07 slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<!-- General and theme style sheets -->
-<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css">
-
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-}
-</script>
 
 <style type="text/css">
     pre { line-height: 125%; }
@@ -14469,145 +14455,86 @@ all of MD as it is not optimized for dense, information rich UIs.
 </style>
 
 <style type="text/css">
+/* Force rendering true colors when outputing to pdf */
+* {
+  -webkit-print-color-adjust: exact;
+}
+
+/* Misc */
 a.anchor-link {
-   display: none;
+  display: none;
 }
+
 .highlight  {
-    margin: 0.4em;
-}
-.jp-Notebook {
-    padding: 0;
-}
-:root {
-    --jp-ui-font-size1: 20px;       /* instead of 14px */
-    --jp-content-font-size1: 20px;  /* instead of 14px */
-    --jp-code-font-size: 19px;      /* instead of 13px */
-    --jp-cell-prompt-width: 110px;  /* instead of 64px */
-}
-@media print {
-  body {
-    margin: 0;
-  }
-}
-</style>
-
-<style type="text/css">
-/* Overrides of notebook CSS for static HTML export */
-.reveal {
-  font-size: 160%;
-}
-.reveal table {
-  font-size: var(--jp-ui-font-size1);
-}
-.reveal pre {
-  width: inherit;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-}
-.reveal pre code {
-  padding: 0px;
-}
-.reveal section img {
-  border: 0px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal .slides {
-  text-align: left;
-}
-.reveal.fade {
-  opacity: 1;
-}
-.reveal .progress {
-  position: static;
+  margin: 0.4em;
 }
 
-div.jp-InputArea-editor {
-  padding: 0.06em;
+/* Input area styling */
+.jp-InputArea {
+  overflow: hidden;
 }
 
-div.code_cell {
-  background-color: transparent;
+.jp-InputArea-editor {
+  overflow: hidden;
 }
 
-div.output_area pre {
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-}
-
-div.jp-OutputPrompt {
-  /* 5px right shift to account for margin in parent container */
-  margin: 5px 5px 0 0;
-}
-
-.reveal div.highlight {
+.CodeMirror pre {
   margin: 0;
+  padding: 0;
 }
 
-.reveal div.highlight > pre {
-  margin: 0;
+/* Using table instead of flexbox so that we can use break-inside property */
+/* CSS rules under this comment should not be required anymore after we move to the JupyterLab 4.0 CSS */
+
+
+.jp-CodeCell.jp-mod-outputsScrolled .jp-OutputArea-prompt {
+  min-width: calc(
+    var(--jp-cell-prompt-width) - var(--jp-private-cell-scrolling-output-offset)
+  );
+}
+
+.jp-OutputArea-child {
+  display: table;
   width: 100%;
-  font-size: var(--jp-code-font-size);
 }
 
-.reveal div.jp-OutputArea-output > pre {
-  margin: 0;
-  width: 90%;
-  font-size: var(--jp-code-font-size);
-  box-shadow: none;
+.jp-OutputPrompt {
+  display: table-cell;
+  vertical-align: top;
+  min-width: var(--jp-cell-prompt-width);
 }
 
-/* Reveal navigation controls */
-
-.reveal .controls .navigate-left,
-.reveal .controls .navigate-left.enabled {
-  border-right-color: #727272;
-}
-.reveal .controls .navigate-left.enabled:hover,
-.reveal .controls .navigate-left.enabled.enabled:hover {
-  border-right-color: #dfdfdf;
-}
-.reveal .controls .navigate-right,
-.reveal .controls .navigate-right.enabled {
-  border-left-color: #727272;
-}
-.reveal .controls .navigate-right.enabled:hover,
-.reveal .controls .navigate-right.enabled.enabled:hover {
-  border-left-color: #dfdfdf;
-}
-.reveal .controls .navigate-up,
-.reveal .controls .navigate-up.enabled {
-  border-bottom-color: #727272;
-}
-.reveal .controls .navigate-up.enabled:hover,
-.reveal .controls .navigate-up.enabled.enabled:hover {
-  border-bottom-color: #dfdfdf;
-}
-.reveal .controls .navigate-down,
-.reveal .controls .navigate-down.enabled {
-  border-top-color: #727272;
-}
-.reveal .controls .navigate-down.enabled:hover,
-.reveal .controls .navigate-down.enabled.enabled:hover {
-  border-top-color: #dfdfdf;
-}
-.reveal .progress span {
-  background: #727272;
+body[data-format='mobile'] .jp-OutputPrompt {
+  display: table-row;
 }
 
-/* Scrollbars */
+.jp-OutputArea-output {
+  display: table-cell;
+  width: 100%;
+}
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
+  display: table-row;
 }
-::-webkit-scrollbar * {
-  background: transparent;
+
+.jp-OutputArea-output.jp-OutputArea-executeResult {
+  width: 100%;
 }
-::-webkit-scrollbar-thumb {
-  background: #727272 !important;
+
+/* Hiding the collapser by default */
+.jp-Collapser {
+  display: none;
+}
+
+@media print {
+  .jp-Cell-inputWrapper,
+  .jp-Cell-outputWrapper {
+    display: block;
+  }
+
+  .jp-OutputArea-child {
+    break-inside: avoid-page;
+  }
 }
 </style>
 
@@ -14644,30 +14571,24 @@ div.jp-OutputPrompt {
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --><!-- Reveal Theme -->
-<link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/theme/simple.css" id="theme">
-
-</head>
-
+    <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="reveal">
-<div class="slides"><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="BUKU-KATING"><center>BUKU KATING</center><a class="anchor-link" href="#BUKU-KATING">&#182;</a></h1><h1 id="HIMPUNAN-MAHASISWA-SAINS-DATA"><center>HIMPUNAN MAHASISWA SAINS DATA</center><a class="anchor-link" href="#HIMPUNAN-MAHASISWA-SAINS-DATA">&#182;</a></h1><p><br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/></p>
+<h1 id="BUKU-KATING"><center>BUKU KATING</center><a class="anchor-link" href="#BUKU-KATING">&#182;</a></h1><h1 id="HIMPUNAN-MAHASISWA-SAINS-DATA"><center>HIMPUNAN MAHASISWA SAINS DATA</center><a class="anchor-link" href="#HIMPUNAN-MAHASISWA-SAINS-DATA">&#182;</a></h1><p><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br></p>
 
 </div>
 </div>
@@ -14680,7 +14601,7 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <center>
-<img src="https://drive.google.com/uc?export=view&id=1-3I6TyKJkw0_QpjwuRGe0zUM6bUqGdhK" width="300"/>
+    <img src="https://drive.google.com/uc?id=1-3I6TyKJkw0_QpjwuRGe0zUM6bUqGdhK" width=300>
 </center>
 </div>
 </div>
@@ -14692,15 +14613,15 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="NAMA-:-Gymnastiar-Al-Khoarizmy-"><center>NAMA : Gymnastiar Al Khoarizmy </center><a class="anchor-link" href="#NAMA-:-Gymnastiar-Al-Khoarizmy-">&#182;</a></h3><h3 id="NIM-:-122450096-"><center>NIM : 122450096 </center><a class="anchor-link" href="#NIM-:-122450096-">&#182;</a></h3><h3 id="KELOMPOK-:-7-Bayesian-"><center>KELOMPOK : 7 Bayesian </center><a class="anchor-link" href="#KELOMPOK-:-7-Bayesian-">&#182;</a></h3><p><br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/></p>
+<h3 id="NAMA-:-Gymnastiar-Al-Khoarizmy-"><center>NAMA : Gymnastiar Al Khoarizmy </center><a class="anchor-link" href="#NAMA-:-Gymnastiar-Al-Khoarizmy-">&#182;</a></h3><h3 id="NIM-:-122450096-"><center>NIM : 122450096 </center><a class="anchor-link" href="#NIM-:-122450096-">&#182;</a></h3><h3 id="KELOMPOK-:-7-Bayesian-"><center>KELOMPOK : 7 Bayesian </center><a class="anchor-link" href="#KELOMPOK-:-7-Bayesian-">&#182;</a></h3><p><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br></p>
 
 </div>
 </div>
@@ -14723,8 +14644,8 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><center></center>
-    <img src="https://drive.google.com/uc?export=view&id=1YX2WdeMifPltlBGohalZY1aA8iiQ40JJ"/></p>
+<p><center>
+    <img src="https://drive.google.com/uc?id=1YX2WdeMifPltlBGohalZY1aA8iiQ40JJ"></p>
 
 </div>
 </div>
@@ -14747,7 +14668,7 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=110jd9C9X1BqxpSM_A8eLjDh8IUTeMCY8" alt="Organigram HMSD Bayesian.png"></p>
+<p><img src="https://drive.google.com/uc?id=110jd9C9X1BqxpSM_A8eLjDh8IUTeMCY8" alt="Organigram HMSD Bayesian.png"></p>
 
 </div>
 </div>
@@ -14759,8 +14680,8 @@ div.jp-OutputPrompt {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><center></center>
-    <img src="https://drive.google.com/uc?export=view&id=1YX2WdeMifPltlBGohalZY1aA8iiQ40JJ"/></p>
+<p><center>
+    <img src="https://drive.google.com/uc?id=1YX2WdeMifPltlBGohalZY1aA8iiQ40JJ"></p>
 
 </div>
 </div>
@@ -15311,7 +15232,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17ffQgZFHYiUz-q3Ym9iPbyhPhzAFzm54" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17ffQgZFHYiUz-q3Ym9iPbyhPhzAFzm54" width=200></p>
 
 </div>
 </div>
@@ -15412,7 +15333,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17zDVJ8gB5TCV4wyz68tL9SQ37PGIIOGf" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17zDVJ8gB5TCV4wyz68tL9SQ37PGIIOGf" width=200></p>
 
 </div>
 </div>
@@ -15513,7 +15434,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=18GTM1QrvnpJmDvY0FcdqK9nCNR0MhcML" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=18GTM1QrvnpJmDvY0FcdqK9nCNR0MhcML" width="200"></p>
 
 </div>
 </div>
@@ -15614,8 +15535,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16fXLP7ZCHruzmtIHnJI2weQa4ZxSrHgh" width="200"/>
-&lt;/center&gt;</p>
+<p><img src="https://drive.google.com/uc?id=16fXLP7ZCHruzmtIHnJI2weQa4ZxSrHgh" width="200"></p>
 
 </div>
 </div>
@@ -15716,8 +15636,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=185XhUAEfRbQiSrn7ApWFDvESKe3Dzmwb" width="200"/>
-&lt;/center&gt;</p>
+<p><img src="https://drive.google.com/uc?id=185XhUAEfRbQiSrn7ApWFDvESKe3Dzmwb" width="200"></p>
 
 </div>
 </div>
@@ -15818,8 +15737,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16bcZ98a2yc1FVwfjwXSncHTnx18gGE-g" width="200"/>
-&lt;/center&gt;</p>
+<p><img src="https://drive.google.com/uc?id=16bcZ98a2yc1FVwfjwXSncHTnx18gGE-g" width="200"></p>
 
 </div>
 </div>
@@ -15920,7 +15838,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16l5ur_ZRjdtDBvCOYkMMha8S1XW0vT0b" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16l5ur_ZRjdtDBvCOYkMMha8S1XW0vT0b" width="200"></p>
 
 </div>
 </div>
@@ -16021,8 +15939,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17cro_CyJoHo-lyyXyDsECI6uQ5gq8qUU" width="200"/>
-&lt;/center&gt;</p>
+<p><img src="https://drive.google.com/uc?id=17cro_CyJoHo-lyyXyDsECI6uQ5gq8qUU" width="200"></p>
 
 </div>
 </div>
@@ -16123,8 +16040,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-R3AZKEfMwXJxbM0S7buhRfWuLl6I27p" width="200"/>
-&lt;/center&gt;</p>
+<p><img src="https://drive.google.com/uc?id=1-R3AZKEfMwXJxbM0S7buhRfWuLl6I27p" width="200"></p>
 
 </div>
 </div>
@@ -16225,7 +16141,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-RbRQSTVeA12mx_PYCKYsMyoA4fr8_D4" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-RbRQSTVeA12mx_PYCKYsMyoA4fr8_D4" width="200"></p>
 
 </div>
 </div>
@@ -16326,7 +16242,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-H3oApOd2N_BbWKS6C59F2hfJGGUtpfM" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-H3oApOd2N_BbWKS6C59F2hfJGGUtpfM" width="200"></p>
 
 </div>
 </div>
@@ -16427,7 +16343,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-V8QOoMQ3fRB4xC4Yak5bZbCLZIPVABc" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-V8QOoMQ3fRB4xC4Yak5bZbCLZIPVABc" width="200"></p>
 
 </div>
 </div>
@@ -16528,7 +16444,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-ND1hYwk8DF_DqAyxLn2JUM3yzeWbKU5" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-ND1hYwk8DF_DqAyxLn2JUM3yzeWbKU5" width="200"></p>
 
 </div>
 </div>
@@ -16629,7 +16545,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-RVKophYQlRqati3Klmpq9di3m9MlMJh" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-RVKophYQlRqati3Klmpq9di3m9MlMJh" width="200"></p>
 
 </div>
 </div>
@@ -16730,7 +16646,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-gBFMbR3Dv-_vfqvVJbykO_o2rgGCUfY" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-gBFMbR3Dv-_vfqvVJbykO_o2rgGCUfY" width="200"></p>
 
 </div>
 </div>
@@ -16831,7 +16747,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-KTJUEZik5cv5f22zNvEfAiQ_x0kAjt1" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-KTJUEZik5cv5f22zNvEfAiQ_x0kAjt1" width="200"></p>
 
 </div>
 </div>
@@ -16932,7 +16848,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-DVa9v2vjritbYXu8mCh6j1ieX8rkxnR" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-DVa9v2vjritbYXu8mCh6j1ieX8rkxnR" width="200"></p>
 
 </div>
 </div>
@@ -17033,7 +16949,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1099wu85jfDIOP122ja2qfmKHPUiP8RU-" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1099wu85jfDIOP122ja2qfmKHPUiP8RU-" width="200"></p>
 
 </div>
 </div>
@@ -17134,7 +17050,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15wmZChH9Mww7cwzmmWLTFIpqlB9DlwD1" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15wmZChH9Mww7cwzmmWLTFIpqlB9DlwD1" width="200"></p>
 
 </div>
 </div>
@@ -17235,7 +17151,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16EH4iLL3xeesT8PezJ9WHwYPUbVWZ9ka" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16EH4iLL3xeesT8PezJ9WHwYPUbVWZ9ka" width="200"></p>
 
 </div>
 </div>
@@ -17336,7 +17252,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15ox_CNri9aOLrJYMAjk-JzA71s-wIMaE" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15ox_CNri9aOLrJYMAjk-JzA71s-wIMaE" width="200"></p>
 
 </div>
 </div>
@@ -17437,7 +17353,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=163_3bw3tspIKVVRRlZoWt9TfWC-zxoF-" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=163_3bw3tspIKVVRRlZoWt9TfWC-zxoF-" width="200"></p>
 
 </div>
 </div>
@@ -17538,7 +17454,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14rZgy53akDnscGq9AT0b1eQ5lSUmf1vA" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14rZgy53akDnscGq9AT0b1eQ5lSUmf1vA" width="200"></p>
 
 </div>
 </div>
@@ -17639,7 +17555,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=141Gs1OmpJ1ac3SsyP63mtQF-azQmf0HE" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=141Gs1OmpJ1ac3SsyP63mtQF-azQmf0HE" width="200"></p>
 
 </div>
 </div>
@@ -17740,7 +17656,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13niWHz_vREDJ0dpvU6M2IRb-639PCaRo" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13niWHz_vREDJ0dpvU6M2IRb-639PCaRo" width="200"></p>
 
 </div>
 </div>
@@ -17841,7 +17757,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13nfQ0qr-xArAPjtlWbup5cvKhLgTlfXr" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13nfQ0qr-xArAPjtlWbup5cvKhLgTlfXr" width="200"></p>
 
 </div>
 </div>
@@ -17942,7 +17858,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15-BFTANu5lin85MU9EgqI-xQnj_XxcUM" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15-BFTANu5lin85MU9EgqI-xQnj_XxcUM" width="200"></p>
 
 </div>
 </div>
@@ -18043,7 +17959,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14kuc8dkN4akLQtBWUyFTNqSn2Vuj3gW-" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14kuc8dkN4akLQtBWUyFTNqSn2Vuj3gW-" width="200"></p>
 
 </div>
 </div>
@@ -18144,7 +18060,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15PpymTf9bQKmz0dbHL5zKuYWISlsnUpz" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15PpymTf9bQKmz0dbHL5zKuYWISlsnUpz" width="200"></p>
 
 </div>
 </div>
@@ -18245,7 +18161,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16MMhZvLstcEACHunD2W6ATI2VH_4yPzX" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16MMhZvLstcEACHunD2W6ATI2VH_4yPzX" width="200"></p>
 
 </div>
 </div>
@@ -18346,7 +18262,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16_RVvv71rRggzeI_iUaI9g7P1--2ZsEm" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16_RVvv71rRggzeI_iUaI9g7P1--2ZsEm" width="200"></p>
 
 </div>
 </div>
@@ -18447,7 +18363,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14zImqrq0Aac9wvT8b4T2ZdH7nYMlWgq2" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14zImqrq0Aac9wvT8b4T2ZdH7nYMlWgq2" width="200"></p>
 
 </div>
 </div>
@@ -18548,7 +18464,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14vXjWZysStc7z_fV6KvjLUvwMsp34sz8" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14vXjWZysStc7z_fV6KvjLUvwMsp34sz8" width="200"></p>
 
 </div>
 </div>
@@ -18649,7 +18565,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13pok50KL-VGDLZSHgZdzPXRD64wy42_D" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13pok50KL-VGDLZSHgZdzPXRD64wy42_D" width="200"></p>
 
 </div>
 </div>
@@ -18750,7 +18666,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14kD5kz0RXUDoNF7Cshx2tuJNdjVYKESK" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14kD5kz0RXUDoNF7Cshx2tuJNdjVYKESK" width="200"></p>
 
 </div>
 </div>
@@ -18851,7 +18767,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16W0d7Y2QsQefu6kzgwM-aykw2a6_YstJ" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16W0d7Y2QsQefu6kzgwM-aykw2a6_YstJ" width="200"></p>
 
 </div>
 </div>
@@ -18952,7 +18868,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16aeaOuCTOlnnsxGwP1FzUuFSG_VdLYoC" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16aeaOuCTOlnnsxGwP1FzUuFSG_VdLYoC" width="200"></p>
 
 </div>
 </div>
@@ -19053,7 +18969,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=141tlq8CwHQZIaAkKOFdgp5_vpFuzcBzk" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=141tlq8CwHQZIaAkKOFdgp5_vpFuzcBzk" width="200"></p>
 
 </div>
 </div>
@@ -19154,7 +19070,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12YxKTZOpi86A9iCu23Kk9VdZuyAnrs5U" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12YxKTZOpi86A9iCu23Kk9VdZuyAnrs5U" width="200"></p>
 
 </div>
 </div>
@@ -19255,7 +19171,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12gKyRssvQ91jfv3twuxKA5v5nbbgK1dz" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12gKyRssvQ91jfv3twuxKA5v5nbbgK1dz" width="200"></p>
 
 </div>
 </div>
@@ -19356,7 +19272,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12ibMc0xjgWvdzNLa_7--WPjw8hJ0CILV" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12ibMc0xjgWvdzNLa_7--WPjw8hJ0CILV" width="200"></p>
 
 </div>
 </div>
@@ -19457,7 +19373,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12FMdzap-OudmfP27RQ8OaHwB6dL7jv65" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12FMdzap-OudmfP27RQ8OaHwB6dL7jv65" width="200"></p>
 
 </div>
 </div>
@@ -19558,7 +19474,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=126LKI-MzOHg8QjTrmpLRV22jG_i0IDCu" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=126LKI-MzOHg8QjTrmpLRV22jG_i0IDCu" width="200"></p>
 
 </div>
 </div>
@@ -19659,7 +19575,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13BDam5bHMBvcsZ99oCF8ySyOOKOtCYBZ" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13BDam5bHMBvcsZ99oCF8ySyOOKOtCYBZ" width="200"></p>
 
 </div>
 </div>
@@ -19760,7 +19676,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=130HFuZgiU6UbV0dEwfS9QLrJ-tZlbuac" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=130HFuZgiU6UbV0dEwfS9QLrJ-tZlbuac" width="200"></p>
 
 </div>
 </div>
@@ -19861,7 +19777,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12HtJRjglzcQl6KocCKDzCnf7SJQZQrWC" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12HtJRjglzcQl6KocCKDzCnf7SJQZQrWC" width="200"></p>
 
 </div>
 </div>
@@ -19962,7 +19878,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=129k41WFwEP4potTXET88QkVy7zyauHse" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=129k41WFwEP4potTXET88QkVy7zyauHse" width="200"></p>
 
 </div>
 </div>
@@ -20063,7 +19979,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12T5y99wy2vkTe6rM581cn0TsIS-X8DDg" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12T5y99wy2vkTe6rM581cn0TsIS-X8DDg" width="200"></p>
 
 </div>
 </div>
@@ -20164,7 +20080,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12ssPV-dzzZhisNmddEiSCcSw-J9GsJAa" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12ssPV-dzzZhisNmddEiSCcSw-J9GsJAa" width="200"></p>
 
 </div>
 </div>
@@ -20265,7 +20181,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12XqysnNBjQ6uqRE1YAmS90G3AMB78q2C" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12XqysnNBjQ6uqRE1YAmS90G3AMB78q2C" width="200"></p>
 
 </div>
 </div>
@@ -20366,7 +20282,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=125_rwhJ0FzPFNUnOHFEzcAbu5VucYz6D" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=125_rwhJ0FzPFNUnOHFEzcAbu5VucYz6D" width="200"></p>
 
 </div>
 </div>
@@ -20467,7 +20383,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=129rEauv7Tj5C4E21MxQ3KrpHrpZLHnqu" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=129rEauv7Tj5C4E21MxQ3KrpHrpZLHnqu" width="200"></p>
 
 </div>
 </div>
@@ -20568,7 +20484,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=133_HRFv2uN_-MCAmaHHYeDkF64wR38Ms" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=133_HRFv2uN_-MCAmaHHYeDkF64wR38Ms" width="200"></p>
 
 </div>
 </div>
@@ -20669,7 +20585,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12SRYYqwyqozRsl0oZ1aS_O4XQNwMkK6E" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12SRYYqwyqozRsl0oZ1aS_O4XQNwMkK6E" width="200"></p>
 
 </div>
 </div>
@@ -20770,7 +20686,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12EKrTzYLIdMYZGb7DOV6j4N7j8COvJ-X" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12EKrTzYLIdMYZGb7DOV6j4N7j8COvJ-X" width="200"></p>
 
 </div>
 </div>
@@ -20871,7 +20787,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13-xMnnJnM1tVjzIzdlkHWbWXhLDhBcah" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13-xMnnJnM1tVjzIzdlkHWbWXhLDhBcah" width="200"></p>
 
 </div>
 </div>
@@ -20972,7 +20888,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12uwXl5JZcBwzRtQ1eCKlw_J89vwwED6l" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12uwXl5JZcBwzRtQ1eCKlw_J89vwwED6l" width="200"></p>
 
 </div>
 </div>
@@ -21073,7 +20989,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=121_8hYPkwAZCpqCCd7wy7yYWZFCK5JXh" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=121_8hYPkwAZCpqCCd7wy7yYWZFCK5JXh" width="200"></p>
 
 </div>
 </div>
@@ -21174,7 +21090,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12CUuJpp1YdgNaarsebuSPSB-DsQqSEad" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12CUuJpp1YdgNaarsebuSPSB-DsQqSEad" width="200"></p>
 
 </div>
 </div>
@@ -21275,7 +21191,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12ICr7ZQhJt1VUeSUSyawTPiwvsn4vPjZ" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12ICr7ZQhJt1VUeSUSyawTPiwvsn4vPjZ" width="200"></p>
 
 </div>
 </div>
@@ -21376,7 +21292,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16ueXpQKvM4QsSKqOWCWIueZ4YCj66T0F" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16ueXpQKvM4QsSKqOWCWIueZ4YCj66T0F" width="200"></p>
 
 </div>
 </div>
@@ -21477,7 +21393,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15UBjpTNkWwRCTA9wv-DJcJRTi9s7eEH3" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15UBjpTNkWwRCTA9wv-DJcJRTi9s7eEH3" width="200"></p>
 
 </div>
 </div>
@@ -21578,7 +21494,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17IfkgoPyQBFkvetve-YmFHjuKRLgPMIY" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17IfkgoPyQBFkvetve-YmFHjuKRLgPMIY" width="200"></p>
 
 </div>
 </div>
@@ -21679,7 +21595,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17BWWn2sODJyoeGc9jnCeYNGnUw8sjFt7" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17BWWn2sODJyoeGc9jnCeYNGnUw8sjFt7" width="200"></p>
 
 </div>
 </div>
@@ -21780,7 +21696,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17INvuv_q1od1F-m-0QUxdfiRDgF4C7iv" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17INvuv_q1od1F-m-0QUxdfiRDgF4C7iv" width="200"></p>
 
 </div>
 </div>
@@ -21881,7 +21797,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15lkYcwyaByJ0ENipVI6iMZxIMSK-25wQ" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15lkYcwyaByJ0ENipVI6iMZxIMSK-25wQ" width="200"></p>
 
 </div>
 </div>
@@ -21982,7 +21898,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15j4trQJQOa-Gy1R5xZZwnSG2PBWBPTDV" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15j4trQJQOa-Gy1R5xZZwnSG2PBWBPTDV" width="200"></p>
 
 </div>
 </div>
@@ -22083,7 +21999,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17_Ca5e-t3bURj63tPBL4yUU7DQ_NQqDJ" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17_Ca5e-t3bURj63tPBL4yUU7DQ_NQqDJ" width="200"></p>
 
 </div>
 </div>
@@ -22184,7 +22100,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15jI_DZB6RQSzTvj6D3EQI_FIrRFRBXAR" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15jI_DZB6RQSzTvj6D3EQI_FIrRFRBXAR" width="200"></p>
 
 </div>
 </div>
@@ -22285,7 +22201,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=15kLec_52r4Tkq1VDUyZRen_9x0WPAbbm" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=15kLec_52r4Tkq1VDUyZRen_9x0WPAbbm" width="200"></p>
 
 </div>
 </div>
@@ -22386,7 +22302,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17XGJJ5d7qSLt4qojp5FzYpXlk9xNY-ns" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17XGJJ5d7qSLt4qojp5FzYpXlk9xNY-ns" width="200"></p>
 
 </div>
 </div>
@@ -22487,7 +22403,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16lXJc5pGpGfhnOZ9xnk3CAJN8JutW_c4" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16lXJc5pGpGfhnOZ9xnk3CAJN8JutW_c4" width="200"></p>
 
 </div>
 </div>
@@ -22588,7 +22504,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17VC6noXIJBeOzLmMeBO1CrIiB3D1lRN9" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17VC6noXIJBeOzLmMeBO1CrIiB3D1lRN9" width="200"></p>
 
 </div>
 </div>
@@ -22689,7 +22605,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=17VEOBaxqEKVsdOlnZPz6MZCEjc0houeq" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=17VEOBaxqEKVsdOlnZPz6MZCEjc0houeq" width="200"></p>
 
 </div>
 </div>
@@ -22790,7 +22706,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16sxJdjlfvZcydFCBelJd6woKP2aNNmMf" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16sxJdjlfvZcydFCBelJd6woKP2aNNmMf" width="200"></p>
 
 </div>
 </div>
@@ -22891,7 +22807,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16mAaNxj2YKka5kk7ZHid7aPBNMEdMkLL" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16mAaNxj2YKka5kk7ZHid7aPBNMEdMkLL" width="200"></p>
 
 </div>
 </div>
@@ -22992,7 +22908,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=16rS2jpJjMoOp5ccdNWCFpZtOqJypFK5J" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=16rS2jpJjMoOp5ccdNWCFpZtOqJypFK5J" width="200"></p>
 
 </div>
 </div>
@@ -23093,7 +23009,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10JAFrXCX61Uf15kb1RCsJHpukfcHiMpc" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10JAFrXCX61Uf15kb1RCsJHpukfcHiMpc" width="200"></p>
 
 </div>
 </div>
@@ -23194,7 +23110,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-niKJYGapm8pcrP1-7eW7N72QJbxyN3q" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-niKJYGapm8pcrP1-7eW7N72QJbxyN3q" width="200"></p>
 
 </div>
 </div>
@@ -23295,7 +23211,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10HVmtaaSJvAxc2gUXCnQjIksVCJGCXP1" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10HVmtaaSJvAxc2gUXCnQjIksVCJGCXP1" width="200"></p>
 
 </div>
 </div>
@@ -23396,7 +23312,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-k2JAS1Kespk13shbChuU6lcur8zZiOH" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-k2JAS1Kespk13shbChuU6lcur8zZiOH" width="200"></p>
 
 </div>
 </div>
@@ -23497,7 +23413,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-hDDKvKdXZM46z9VE_d3QXdjmSQfn7UW" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-hDDKvKdXZM46z9VE_d3QXdjmSQfn7UW" width="200"></p>
 
 </div>
 </div>
@@ -23598,7 +23514,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10YgtW1PVhi9zE_JIJU3eyxeqr_GoDNMI" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10YgtW1PVhi9zE_JIJU3eyxeqr_GoDNMI" width="200"></p>
 
 </div>
 </div>
@@ -23699,7 +23615,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=107sP8XG-X5GBr3_ELgoVCpik9iboXkXP" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=107sP8XG-X5GBr3_ELgoVCpik9iboXkXP" width="200"></p>
 
 </div>
 </div>
@@ -23800,7 +23716,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-m8J6KPgxHgk2x6_2yZ_OP6mg6sDsIj0" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-m8J6KPgxHgk2x6_2yZ_OP6mg6sDsIj0" width="200"></p>
 
 </div>
 </div>
@@ -23901,7 +23817,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11mFqmsNJKAY0HTg27o7YpVEG8rCTLFid" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11mFqmsNJKAY0HTg27o7YpVEG8rCTLFid" width="200"></p>
 
 </div>
 </div>
@@ -24002,7 +23918,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11QVUZMT0qlgRymFlMhwaRx7b1UytZ3b1" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11QVUZMT0qlgRymFlMhwaRx7b1UytZ3b1" width="200"></p>
 
 </div>
 </div>
@@ -24103,7 +24019,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10ZtGo9Gde3s1uBQnCu0yh0a7v2jrHl1c" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10ZtGo9Gde3s1uBQnCu0yh0a7v2jrHl1c" width="200"></p>
 
 </div>
 </div>
@@ -24204,7 +24120,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10lBgFpY45rbuuS30cfI1YKMzJWAyoYcs" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10lBgFpY45rbuuS30cfI1YKMzJWAyoYcs" width="200"></p>
 
 </div>
 </div>
@@ -24305,7 +24221,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11TzgzbfSCf6ak1TGeuClxIzMpQVG8aJ1" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11TzgzbfSCf6ak1TGeuClxIzMpQVG8aJ1" width="200"></p>
 
 </div>
 </div>
@@ -24406,7 +24322,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10mEeBt3UMHlzTlOTtU4iiKNykNE3yY6p" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10mEeBt3UMHlzTlOTtU4iiKNykNE3yY6p" width="200"></p>
 
 </div>
 </div>
@@ -24507,7 +24423,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10NODUXMb3_Zs9kVdsEdBbg-m3Gnmqy6I" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10NODUXMb3_Zs9kVdsEdBbg-m3Gnmqy6I" width="200"></p>
 
 </div>
 </div>
@@ -24608,7 +24524,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11--60lsW1NLpKdEXjGJ85kuGsH-os4h5" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11--60lsW1NLpKdEXjGJ85kuGsH-os4h5" width="200"></p>
 
 </div>
 </div>
@@ -24709,7 +24625,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10tYdNzNXi1YoqTyp8-_dv9yGJdXzWMZu" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10tYdNzNXi1YoqTyp8-_dv9yGJdXzWMZu" width="200"></p>
 
 </div>
 </div>
@@ -24810,7 +24726,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11UDBrAe58jtmaCGhAuPzmDU8k6TpHkSa" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11UDBrAe58jtmaCGhAuPzmDU8k6TpHkSa" width="200"></p>
 
 </div>
 </div>
@@ -24911,7 +24827,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10oDM9OcxI6zqMSuRXqFOSHDyFbKEbclq" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10oDM9OcxI6zqMSuRXqFOSHDyFbKEbclq" width="200"></p>
 
 </div>
 </div>
@@ -25012,7 +24928,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-rY9GyPVQuflATH69yI5n4CKw68GYlXN" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-rY9GyPVQuflATH69yI5n4CKw68GYlXN" width="200"></p>
 
 </div>
 </div>
@@ -25113,7 +25029,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10vC_kxskrubnwjKCCC-PHCxurLmVuylB" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10vC_kxskrubnwjKCCC-PHCxurLmVuylB" width="200"></p>
 
 </div>
 </div>
@@ -25214,7 +25130,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11VsOeBz8DNy0LqBrYIQWZ_TWaGkHcOxI" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11VsOeBz8DNy0LqBrYIQWZ_TWaGkHcOxI" width="200"></p>
 
 </div>
 </div>
@@ -25315,7 +25231,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10Iy_BVCMYLZ3BabYyyQ0bLTdVz1JQSju" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10Iy_BVCMYLZ3BabYyyQ0bLTdVz1JQSju" width="200"></p>
 
 </div>
 </div>
@@ -25416,7 +25332,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=11csXN_aSiivz8CH2sQhzHu27HNZtxVuL" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=11csXN_aSiivz8CH2sQhzHu27HNZtxVuL" width="200"></p>
 
 </div>
 </div>
@@ -25517,7 +25433,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1-lcp4vS4UJr7-kM-eIsKfw336VV7mcJI" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1-lcp4vS4UJr7-kM-eIsKfw336VV7mcJI" width="200"></p>
 
 </div>
 </div>
@@ -25618,7 +25534,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=10Ud7di4kgyMkzzk9uHRpgmO7zTYPsxCR" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=10Ud7di4kgyMkzzk9uHRpgmO7zTYPsxCR" width="200"></p>
 
 </div>
 </div>
@@ -25719,7 +25635,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13GMVliavg7zqcmfjqdEkCnrTZufQIaRd" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13GMVliavg7zqcmfjqdEkCnrTZufQIaRd" width="200"></p>
 
 </div>
 </div>
@@ -25820,7 +25736,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13DGSZ4f5_WhyxDwRvuKTc-o57cM9IeDk" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13DGSZ4f5_WhyxDwRvuKTc-o57cM9IeDk" width="200"></p>
 
 </div>
 </div>
@@ -25921,7 +25837,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12qum0dfehy1Fdh288Melx6vixy8Xx4Db" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12qum0dfehy1Fdh288Melx6vixy8Xx4Db" width="200"></p>
 
 </div>
 </div>
@@ -26022,7 +25938,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13UWqNHO9vJqLYaW0BBoXXBwUHoFpl5fG" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13UWqNHO9vJqLYaW0BBoXXBwUHoFpl5fG" width="200"></p>
 
 </div>
 </div>
@@ -26123,7 +26039,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13Rrgq1NsLeX848MO6ng5aD6EGV8UUurb" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13Rrgq1NsLeX848MO6ng5aD6EGV8UUurb" width="200"></p>
 
 </div>
 </div>
@@ -26224,7 +26140,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13MA4AP9qmzA-PEiSWWgNp_QqjemFBojY" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13MA4AP9qmzA-PEiSWWgNp_QqjemFBojY" width="200"></p>
 
 </div>
 </div>
@@ -26325,7 +26241,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13eq22SmwAC4YES7XXzjXeuXdAGRmwZ3s" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13eq22SmwAC4YES7XXzjXeuXdAGRmwZ3s" width="200"></p>
 
 </div>
 </div>
@@ -26426,7 +26342,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14BnwOCg2bSNl9XgP3My98Usa1jtPhgds" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14BnwOCg2bSNl9XgP3My98Usa1jtPhgds" width="200"></p>
 
 </div>
 </div>
@@ -26527,7 +26443,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12qxLvkm4LULYAas-gIfMlT3on8_TY4zJ" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12qxLvkm4LULYAas-gIfMlT3on8_TY4zJ" width="200"></p>
 
 </div>
 </div>
@@ -26628,7 +26544,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13IPBiDZRMnjng4yYVRzf2GJQM7SOg3wl" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13IPBiDZRMnjng4yYVRzf2GJQM7SOg3wl" width="200"></p>
 
 </div>
 </div>
@@ -26729,7 +26645,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14YrmRhPHuPfyNkML3P-kvpKpXAb9wIv9" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14YrmRhPHuPfyNkML3P-kvpKpXAb9wIv9" width="200"></p>
 
 </div>
 </div>
@@ -26830,7 +26746,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=14_bYS2rF5UaQAP_PSIRtAjHVmCLX72Ia" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=14_bYS2rF5UaQAP_PSIRtAjHVmCLX72Ia" width="200"></p>
 
 </div>
 </div>
@@ -26931,7 +26847,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13QmK00boFxp7h_Fxhm1Bq_X3d655pqNI" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13QmK00boFxp7h_Fxhm1Bq_X3d655pqNI" width="200"></p>
 
 </div>
 </div>
@@ -27032,7 +26948,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13kM4Yi9dgBafFuGLC34UmKgwNQbZTZqp" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13kM4Yi9dgBafFuGLC34UmKgwNQbZTZqp" width="200"></p>
 
 </div>
 </div>
@@ -27133,7 +27049,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=1E51tB_6OOV33tO4FsYkaPWOGiLHixwa5" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=1E51tB_6OOV33tO4FsYkaPWOGiLHixwa5" width="200"></p>
 
 </div>
 </div>
@@ -27234,7 +27150,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=13hZRZStqwQazV_E9hksKXnjlL3Ol1g8e" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=13hZRZStqwQazV_E9hksKXnjlL3Ol1g8e" width="200"></p>
 
 </div>
 </div>
@@ -27335,7 +27251,7 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="https://drive.google.com/uc?export=view&id=12n01EbxcK5EjaBHVblnBJEfQlgpziSt7" width="200"/></p>
+<p><img src="https://drive.google.com/uc?id=12n01EbxcK5EjaBHVblnBJEfQlgpziSt7" width="200"></p>
 
 </div>
 </div>
@@ -27359,9 +27275,9 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align:center">
-<img src="C:\Users\rafif\Documents\cool yeah\KADERISASI\Meaning of seeing Line in a dream.png"/>
-</div>
+<p><center>
+    <img src="https://drive.google.com/uc?id=1YX2WdeMifPltlBGohalZY1aA8iiQ40JJ"></p>
+
 </div>
 </div>
 </div>
@@ -27383,8 +27299,8 @@ Successfully Connected
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><center></center>
-    <img src="https://drive.google.com/uc?export=view&id=1Xfw51ycSbFOygT0xPWqQpAnag8CAkAPZ" width="700"/></p>
+<p><center>
+    <img src="https://drive.google.com/uc?id=1Xfw51ycSbFOygT0xPWqQpAnag8CAkAPZ" width="700"></p>
 
 </div>
 </div>
@@ -27397,8 +27313,8 @@ Successfully Connected
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><strong>Kesan</strong> : Kelompok 7 Bayesian pokoknya yang paling gokil, asik-asik orangnya, baik-baik, ramah-ramah, cantik-cantik, ganteng-ganteng, pinter-pinter, kece-kece, cool-cool, pokoknya debest kelompok ever.
-<br/>
-<br/></p>
+<br>
+<br></p>
 <p><strong>Pesan</strong> : Sehat terus kelompok Bayesian ku, semoga walaupun acara ini sudah selesai hingga lulus dari institut tercinta ini pun kita dapat terus berkumpul dan saling bersilaturahmi bersuka ria kembali. Teruslah hidup Bayesianku.</p>
 
 </div>
@@ -27409,10 +27325,10 @@ Successfully Connected
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>sudo<span class="w"> </span>jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class="w"> </span>pdf<span class="w"> </span>--allow-chromium-download<span class="w"> </span>--embed-images<span class="w"> </span><span class="s2">"/content/drive/MyDrive/Colab Notebooks/Buku_Kating_Gymnastiar_Al_K_07.ipynb"</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class="w"> </span>html<span class="w"> </span><span class="s2">"/content/drive/MyDrive/Colab Notebooks/Buku_Kating_Gymnastiar_Al_K_07.ipynb"</span>
 </pre></div>
 
      </div>
@@ -27434,546 +27350,8 @@ Successfully Connected
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[NbConvertApp] Converting notebook /content/drive/MyDrive/Colab Notebooks/Buku_Kating_Gymnastiar_Al_K_07.ipynb to pdf
-[NbConvertApp] Writing 208378 bytes to notebook.tex
-[NbConvertApp] Building PDF
-[NbConvertApp] Running xelatex 3 times: [&#39;xelatex&#39;, &#39;notebook.tex&#39;, &#39;-quiet&#39;]
-[NbConvertApp] CRITICAL | xelatex failed: [&#39;xelatex&#39;, &#39;notebook.tex&#39;, &#39;-quiet&#39;]
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex)
- restricted \write18 enabled.
-entering extended mode
-(./notebook.tex
-LaTeX2e &lt;2021-11-15&gt; patch level 1
-L3 programming layer &lt;2022-01-21&gt;
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f))))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
-code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
-.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-Library (tcolorbox): &#39;tcbbreakable.code.tex&#39; version &#39;5.0.2&#39;
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty))))
-(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?&#39; option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/eurosym/eurosym.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-(|extractbb --version))))
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
-(/usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math.sty
-(/usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/fix-cm.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def))
-(/usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/grffile/grffile.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-xetex.def))
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)
-(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
-(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hxetex.def
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/titling/titling.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
-No file notebook.aux.
-(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty)
-*geometry* driver: auto-detecting
-*geometry* detected driver: xetex
-*geometry* verbose mode - [ preamble ] result:
-* driver: xetex
-* paper: &lt;default&gt;
-* layout: &lt;same size as paper&gt;
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=11.0pt
-* \footskip=30.0pt
-* \marginparwidth=59.0pt
-* \marginparsep=10.0pt
-* \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd)
-
-LaTeX Warning: No \author given.
-
-
-! LaTeX Error: File `https://drive.google.com/uc?export=view&id=110jd9C9X1BqxpSM_A8eLjDh8IU
-TeMCY8&#39; not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...                                              
-                                                  
-l.430 .../uc?id=110jd9C9X1BqxpSM_A8eLjDh8IUTeMCY8}
-                                                  
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.430 .../uc?id=110jd9C9X1BqxpSM_A8eLjDh8IUTeMCY8}
-                                                  
-No pages of output.
-Transcript written on notebook.log.
-
-Traceback (most recent call last):
-  File &#34;/usr/local/bin/jupyter-nbconvert&#34;, line 8, in &lt;module&gt;
-    sys.exit(main())
-  File &#34;/usr/local/lib/python3.10/dist-packages/jupyter_core/application.py&#34;, line 280, in launch_instance
-    super().launch_instance(argv=argv, **kwargs)
-  File &#34;/usr/local/lib/python3.10/dist-packages/traitlets/config/application.py&#34;, line 992, in launch_instance
-    app.start()
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/nbconvertapp.py&#34;, line 423, in start
-    self.convert_notebooks()
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/nbconvertapp.py&#34;, line 597, in convert_notebooks
-    self.convert_single_notebook(notebook_filename)
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/nbconvertapp.py&#34;, line 560, in convert_single_notebook
-    output, resources = self.export_single_notebook(
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/nbconvertapp.py&#34;, line 488, in export_single_notebook
-    output, resources = self.exporter.from_filename(
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/exporters/exporter.py&#34;, line 189, in from_filename
-    return self.from_file(f, resources=resources, **kw)
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/exporters/exporter.py&#34;, line 206, in from_file
-    return self.from_notebook_node(
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/exporters/pdf.py&#34;, line 194, in from_notebook_node
-    self.run_latex(tex_file)
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/exporters/pdf.py&#34;, line 164, in run_latex
-    return self.run_command(
-  File &#34;/usr/local/lib/python3.10/dist-packages/nbconvert/exporters/pdf.py&#34;, line 150, in run_command
-    raise raise_on_failure(
-nbconvert.exporters.pdf.LatexFailed: PDF creating failed, captured latex output:
-Failed to run &#34;[&#39;xelatex&#39;, &#39;notebook.tex&#39;, &#39;-quiet&#39;]&#34; command:
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex)
- restricted \write18 enabled.
-entering extended mode
-(./notebook.tex
-LaTeX2e &lt;2021-11-15&gt; patch level 1
-L3 programming layer &lt;2022-01-21&gt;
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f))))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
-code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex))
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
-.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty)) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-Library (tcolorbox): &#39;tcbbreakable.code.tex&#39; version &#39;5.0.2&#39;
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty))))
-(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?&#39; option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/eurosym/eurosym.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-(|extractbb --version))))
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
-(/usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math.sty
-(/usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math-xetex.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/fix-cm.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def))
-(/usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/grffile/grffile.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-xetex.def))
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)
-(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
-(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hxetex.def
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/titling/titling.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
-No file notebook.aux.
-(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty)
-*geometry* driver: auto-detecting
-*geometry* detected driver: xetex
-*geometry* verbose mode - [ preamble ] result:
-* driver: xetex
-* paper: &lt;default&gt;
-* layout: &lt;same size as paper&gt;
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=11.0pt
-* \footskip=30.0pt
-* \marginparwidth=59.0pt
-* \marginparsep=10.0pt
-* \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd)
-
-LaTeX Warning: No \author given.
-
-
-! LaTeX Error: File `https://drive.google.com/uc?export=view&id=110jd9C9X1BqxpSM_A8eLjDh8IU
-TeMCY8&#39; not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...                                              
-                                                  
-l.430 .../uc?id=110jd9C9X1BqxpSM_A8eLjDh8IUTeMCY8}
-                                                  
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.430 .../uc?id=110jd9C9X1BqxpSM_A8eLjDh8IUTeMCY8}
-                                                  
-No pages of output.
-Transcript written on notebook.log.
-
+<pre>[NbConvertApp] Converting notebook /content/drive/MyDrive/Colab Notebooks/Buku_Kating_Gymnastiar_Al_K_07.ipynb to html
+[NbConvertApp] Writing 1075845 bytes to /content/drive/MyDrive/Colab Notebooks/Buku_Kating_Gymnastiar_Al_K_07.html
 </pre>
 </div>
 </div>
@@ -27998,8 +27376,6 @@ Transcript written on notebook.log.
 </div>
 </div>
 
-</div></section></section>
-</div>
 </div>
 </body>
 
@@ -28008,56 +27384,5 @@ Transcript written on notebook.log.
 
 
 
-
-<script>
-require(
-    {
-      // it makes sense to wait a little bit when you are loading
-      // reveal from a cdn in a slow connection environment
-      waitSeconds: 15
-    },
-    [
-      "https://unpkg.com/reveal.js@4.0.2/dist/reveal.js",
-      "https://unpkg.com/reveal.js@4.0.2/plugin/notes/notes.js"
-    ],
-
-    function(Reveal, RevealNotes){
-        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-            transition: "slide",
-            slideNumber: "",
-            plugins: [RevealNotes]
-        });
-
-        var update = function(event){
-          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
-            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
-          }
-        };
-
-        Reveal.addEventListener('slidechanged', update);
-
-        function setScrollingSlide() {
-            var scroll = false
-            if (scroll === true) {
-              var h = $('.reveal').height() * 0.95;
-              $('section.present').find('section')
-                .filter(function() {
-                  return $(this).height() > h;
-                })
-                .css('height', 'calc(95vh)')
-                .css('overflow-y', 'scroll')
-                .css('margin-top', '20px');
-            }
-        }
-
-        // check and set the scrolling slide every time the slide change
-        Reveal.addEventListener('slidechanged', setScrollingSlide);
-    }
-);
-</script>
 
 </html>
