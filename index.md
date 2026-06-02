@@ -11,7 +11,7 @@ I am interested in machine learning, deep learning, MLOps, AI data quality, comp
 
 <img src="images/coastal_waste_thumbnail.jpg"/>
 
-Built a zero-shot AI pipeline using Grounding DINO and CLIP to detect and classify coastal waste materials. This project focuses on prompt evaluation, model quality analysis, detection errors, and classification performance.
+Exploring zero-shot vision-language models (Grounding DINO + CLIP) for detecting and classifying coastal waste materials. Details will be added after thesis submission/publication.
 
 ---
 
