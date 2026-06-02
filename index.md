@@ -51,4 +51,4 @@ Time series forecasting research on ferry passenger demand at Bakauheni Port, In
 
 * [GitHub](https://github.com/alkhrzmy)
 * [LinkedIn](https://www.linkedin.com/in/gymnastiar-al-khoarizmy)
-* [Resume](pdf/CV_Gymnastiar_Al_Khoarizmy.pdf)
+* [Resume](pdf/CV%20Gymnastiar%20Al%20Khoarizmy%20020626.pdf)
