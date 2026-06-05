@@ -49,6 +49,16 @@ Time series forecasting research on ferry passenger demand at Bakauheni Port, In
 
 ---
 
+## Other Projects
+
+### [Tourist Visit Analysis to Points-of-Interest in 8 Cities](poi_flickr_visualization.md)
+
+<img src="images/poi_thumbnail.jpg" alt="POI Tourist Visit Analysis"/>
+
+Exploratory data visualization project analyzing tourist visit patterns across 8 cities (Budapest, Delhi, Edinburgh, Glasgow, Osaka, Perth, Toronto, Vienna) using the Flickr YFCC100M dataset. Built with Python, Plotly, and Streamlit. [Live Demo →](https://poi-visualization-vdi-team-15.streamlit.app/)
+
+---
+
 ## Links
 
 * [GitHub](https://github.com/alkhrzmy)
