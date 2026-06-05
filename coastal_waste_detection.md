@@ -60,4 +60,4 @@ Repository and detailed documentation are currently private / not publicly avail
 
 ## Status
 
-Details will be updated after the thesis submission or publication process is completed.
+This project is part of my undergraduate final project / thesis. Details will be updated after the thesis submission or publication process is completed. Stay tuned.

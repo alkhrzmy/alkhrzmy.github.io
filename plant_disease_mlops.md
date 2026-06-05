@@ -71,3 +71,9 @@ Through this project, I learned how to design a machine learning system beyond m
 ## Repository
 
 Project repository and detailed documentation will be added later.
+
+---
+
+## Status
+
+This project was submitted for academic publication. Detailed methodology, model architecture, dataset description, and full experimental results will be added here after the paper is published. Stay tuned.

@@ -9,7 +9,7 @@ I am interested in machine learning, deep learning, MLOps, AI data quality, comp
 
 ### [Zero-Shot Coastal Waste Detection and Material Classification](coastal_waste_detection.md)
 
-<img src="images/coastal_waste_thumbnail.jpg"/>
+<img src="images/AI_Deteksi_Sampah_Pesisir_Lampung.png"/>
 
 Exploring zero-shot vision-language models (Grounding DINO + CLIP) for detecting and classifying coastal waste materials. Details will be added after thesis submission/publication.
 
@@ -19,13 +19,13 @@ Exploring zero-shot vision-language models (Grounding DINO + CLIP) for detecting
 
 <img src="images/slu_retail_thumbnail.jpg"/>
 
-Developed an Indonesian spoken language understanding pipeline for retail transaction recording using deep learning and MLOps concepts. The project includes data preprocessing, model training, evaluation, and documentation.
+Developed an end-to-end Indonesian SLU system using CNN–BiLSTM multi-task learning to extract product, quantity, and intent directly from speech — achieving macro-F1 up to **0.98**.
 
 ---
 
 ### [Plant Disease Diagnosis System using MLOps and Active Learning](plant_disease_mlops.md)
 
-<img src="images/plant_disease_thumbnail.jpg"/>
+<img src="images/plant_disease_thumbnail.png"/>
 
 Developed a machine learning-based plant disease diagnosis system concept using MLOps and active learning. Awarded **3rd Winner at INNOVEST 2026 "Clash of Champions"**.
 

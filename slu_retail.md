@@ -1,117 +1,173 @@
 ---
-
 layout: default
 title: End-to-End Spoken Language Understanding for Retail Transaction Recording
---------------------------------------------------------------------------------
+---
 
 # End-to-End Spoken Language Understanding for Retail Transaction Recording
 
 ## Overview
 
-This project develops an **End-to-End Spoken Language Understanding (SLU)** system for Indonesian retail transaction recording. The system is designed to extract transaction information directly from speech signals, such as **product**, **quantity**, and **intent**, without relying on a separate speech-to-text transcription pipeline.
+This project develops an **End-to-End Spoken Language Understanding (SLU)** system for Indonesian retail transaction recording using a **CNN–BiLSTM multi-task learning** architecture.
 
-The project focuses on applying deep learning to support more efficient and natural transaction recording for small retail businesses and Indonesian SMEs.
+The system directly extracts semantic transaction information — **product**, **quantity**, and **intent** — from raw speech signals, without relying on a separate speech-to-text transcription step. This eliminates error propagation common in conventional pipeline architectures (ASR → NLU) and makes it more efficient for real-world cashier use.
+
+Published in the **Journal of Science and Applicative Technology (JSAT)**, Institut Teknologi Sumatera.
 
 ---
 
 ## Problem
 
-Many retail transaction recording processes in Indonesian SMEs are still performed manually or through text-based input. This can be time-consuming, prone to human error, and less efficient during cashier operations.
+Manual or text-based transaction recording in Indonesian SMEs (UMKM) is slow, error-prone, and interrupts cashier workflow. A voice-based system can provide a more natural and ergonomic interface — allowing transaction input through speech without requiring intensive screen interaction.
 
-A voice-based transaction recording system can provide a more natural input interface, allowing users to record transactions through speech while reducing dependency on manual typing.
+Key challenges in the Indonesian context:
+- Most SLU research focuses on English and other high-resource languages
+- Indonesian retail speech domain is unexplored and lacks public datasets
+- Pipeline approaches (ASR + NLU) have high error propagation risk
 
 ---
 
 ## Objective
 
-The main objective of this project is to build a deep learning-based SLU model that can understand Indonesian retail transaction speech and predict key semantic information directly from audio.
-
-The model is designed to perform three prediction tasks:
-
-* Product classification
-* Quantity classification
-* Intent classification
+Build an end-to-end deep learning model that:
+- Understands Indonesian retail speech directly from audio
+- Simultaneously predicts product class, quantity, and transaction intent
+- Generalizes well to natural human speech, not just synthetic data
 
 ---
 
-## Methodology
+## Dataset
 
-The proposed system uses a **CNN-BiLSTM multi-task learning architecture** with **Log-Mel Spectrogram** features as model input.
+A **hybrid dataset** combining synthetic and manually recorded speech was created specifically for this project:
 
-The workflow consists of several main stages:
+| Type | Count | Source |
+|---|---|---|
+| Synthetic speech | 550 samples | Google Text-to-Speech (TTS) |
+| Manual recordings | 450 samples | Human speakers |
+| **Total** | **1,000 samples** | — |
 
-1. **Audio Data Collection**
-   A hybrid dataset was created by combining synthetic speech and manually recorded speech.
+Each audio sample is annotated with three semantic labels:
+- **Product** — type of retail item
+- **Quantity** — number of items
+- **Intent** — transaction intent (e.g., buy, cancel)
 
-2. **Audio Preprocessing**
-   Audio files were resampled, converted to mono format, trimmed to remove silent segments, and transformed into Log-Mel Spectrogram representations.
+**Audio preprocessing:**
+- Resampled to 16,000 Hz, mono channel
+- Silence trimming at 30 dB threshold
+- Split into train / validation / test sets
 
-3. **Data Augmentation**
-   Audio augmentation techniques were applied to improve model generalization, including masking-based augmentation, Gaussian noise injection, and time shifting.
+---
 
-4. **Model Architecture**
-   The model combines CNN layers for extracting spectral features and BiLSTM layers for modeling temporal dependencies in speech signals.
+## Feature Extraction
 
-5. **Multi-Task Learning**
-   Separate classification heads were used to predict product, quantity, and intent within a single end-to-end model.
+Raw audio is converted into **Log-Mel Spectrogram** representations as input to the neural network:
 
-6. **Two-Stage Training**
-   The training strategy consisted of mixed training using synthetic and manual data, followed by fine-tuning using manually recorded speech to improve robustness on real speech data.
+- FFT window size: 1024
+- Hop length: 256
+- Mel filter banks: 128 channels
+- Normalization: power-to-dB scaling
+
+**Data Augmentation** (applied stochastically during training):
+- SpecAugment: frequency masking (width 18) + time masking (width 24)
+- Gaussian noise injection (std = 0.05)
+- Time shifting
 
 ---
 
 ## Model Architecture
 
-The model architecture consists of:
+The model uses a **CNN–BiLSTM Multi-Task Learning** architecture:
 
-* **CNN Encoder** for extracting local spectral patterns from Log-Mel Spectrogram features.
-* **BiLSTM Layer** for capturing sequential and temporal patterns in speech.
-* **Multi-task Classification Heads** for predicting product, quantity, and intent.
+```
+Log-Mel Spectrogram Input
+        ↓
+[CNN Encoder] — 3 ConvBlocks
+  Conv2D → BatchNorm → ReLU → MaxPool → Dropout(0.2)
+        ↓
+[BiLSTM Layer]
+  Captures bidirectional temporal dependencies
+        ↓
+  ┌─────────────┬──────────────┬──────────────┐
+  ↓             ↓              ↓
+[Product Head] [Quantity Head] [Intent Head]
+  Linear → LayerNorm → Dropout(0.3)
+```
 
-This architecture enables the system to directly map audio input into semantic transaction labels.
+Three separate classification heads share the same encoder, enabling joint learning across all prediction tasks in a single forward pass.
+
+---
+
+## Training Strategy
+
+A **Two-Stage Training** approach was used to handle the imbalance between synthetic and manual data:
+
+**Stage 1 — Mixed Training:**
+- All 1,000 samples (synthetic + manual)
+- Weighted Random Sampler to oversample manual data (weight = 5)
+- Prevents model bias toward synthetic speech patterns
+- Best config: Batch Size 8, LR 0.0001, Weight 5 → Macro F1 = **0.9609**
+
+**Stage 2 — Fine-Tuning:**
+- Manual recordings only (450 samples)
+- Reduced learning rate (LR = 0.00005) for stable domain adaptation
+- Augmentation disabled to preserve natural speech characteristics
+- Best result: Macro F1 = **0.9798** at epoch 6
+
+The fine-tuning stage improved generalization to real-world speech conditions while maintaining high accuracy.
 
 ---
 
 ## Results
 
-The proposed CNN-BiLSTM model achieved strong performance in understanding Indonesian retail transaction speech.
+<img src="images/slu_stage1_curve.png" alt="CNN-BiLSTM Stage-1 Training Curve - Loss and Validation Accuracy"/>
 
-Key results:
+*Stage-1 training curve: loss convergence (left) and validation accuracy per task — Product Acc, Product F1, Quantity Acc (right)*
 
-* Achieved high macro-F1 performance on validation data.
-* Balanced accuracy remained strong across the main prediction tasks.
-* Two-stage training improved model adaptation to manually recorded speech.
-* The end-to-end approach reduced dependency on separate ASR and NLU modules.
+### Stage 1 — Mixed Training Performance
+| Metric | Value |
+|---|---|
+| Macro F1 Score (Product) | **0.9788** |
+| Balanced Accuracy (Product) | > 0.96 |
+| Balanced Accuracy (Quantity) | > 0.95 |
 
-The best fine-tuning experiment reached a macro-F1 score of approximately **0.98**, showing that the model was able to learn meaningful speech representations for transaction understanding.
+<img src="images/slu_stage2_curve.png" alt="CNN-BiLSTM Stage-2 Fine-Tuning Curve"/>
+
+*Stage-2 fine-tuning curve on manual recordings only — LR 0.00005, best Macro F1 = 0.9798 at epoch 6*
+
+### Stage 2 — Fine-Tuning Performance
+| Metric | Value |
+|---|---|
+| Macro F1 Score (best) | **0.9798** |
+| Balanced Accuracy (Product) | > 0.94 |
+| Balanced Accuracy (Quantity) | 0.89 – 0.92 |
+
+The slight drop in quantity accuracy after fine-tuning is expected due to the smaller dataset size — consistent with findings that synthetic pre-training improves robustness while fine-tuning improves domain fit.
 
 ---
 
 ## Key Learnings
 
 Through this project, I learned how to:
-
-* Build an end-to-end speech understanding pipeline.
-* Process audio data into Log-Mel Spectrogram features.
-* Design a CNN-BiLSTM model for speech-based classification.
-* Apply multi-task learning for semantic information extraction.
-* Use two-stage training to combine synthetic and real-world speech data.
-* Evaluate model performance using macro-F1 score and balanced accuracy.
+- Build an end-to-end speech understanding pipeline without ASR dependency
+- Process audio into Log-Mel Spectrogram features with Librosa
+- Design a CNN–BiLSTM multi-task architecture in PyTorch
+- Apply Two-Stage Training to bridge synthetic and real-world data
+- Handle class imbalance with Weighted Random Sampler
+- Tune hyperparameters (batch size, LR, weight) via grid search
+- Evaluate multi-label classification with macro-F1 and balanced accuracy
 
 ---
 
 ## Tech Stack
 
-* Python
-* PyTorch
-* Librosa
-* NumPy
-* Pandas
-* Scikit-learn
-* Matplotlib
-* CNN-BiLSTM
-* Log-Mel Spectrogram
-* Multi-task Learning
+- **Python** — Core implementation
+- **PyTorch** — Model training and architecture
+- **Librosa** — Audio feature extraction (Log-Mel Spectrogram)
+- **CNN–BiLSTM** — Model architecture
+- **Multi-Task Learning** — Joint prediction of product, quantity, intent
+- **SpecAugment** — Audio augmentation
+- **AdamW** — Optimizer with weight decay regularization
+- **NumPy / Pandas / Scikit-learn** — Data processing and evaluation
+- **Matplotlib** — Training visualization
 
 ---
 
@@ -123,4 +179,9 @@ Through this project, I learned how to:
 
 ## Project Status
 
-This project was developed as part of a deep learning / MLOps course project. Further improvements may include expanding the dataset, testing the model on more diverse speakers, and deploying the system as a lightweight voice-based retail transaction assistant.
+Developed as a deep learning course project at Institut Teknologi Sumatera. The paper has been submitted to the **Journal of Science and Applicative Technology (JSAT), ITERA** (e-ISSN: 2581-0545).
+
+Future improvements may include:
+- Expanding the dataset with more diverse speakers and dialects
+- Adding attention mechanisms to the BiLSTM layer
+- Deploying as a lightweight mobile or embedded application for SME cashiers
