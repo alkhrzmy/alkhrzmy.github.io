@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "RTK Command Optimization",
+  "description": "Automatically prefix shell commands with rtk to optimize token usage and compress output",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      "shell"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "rtk hook copilot"
+  }
+}

@@ -43,7 +43,9 @@ Built a big data analytics workflow using the Hadoop ecosystem to support flood-
 
 ### [Seasonal Forecasting of Ferry Passenger Demand](ferry_passenger_forecasting.md)
 
-Time series forecasting research on ferry passenger demand at Bakauheni Port, Indonesia, published in the Indonesian Journal of Electrical and Computer Science.
+<img src="images/forecasting plot.png"/>
+
+Time series forecasting research on ferry passenger demand at Bakauheni Port, Indonesia. Published in the **International Journal of Electronics and Communications System (IJECS)**.
 
 ---
 

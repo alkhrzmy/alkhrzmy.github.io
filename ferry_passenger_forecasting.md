@@ -7,142 +7,165 @@ title: Seasonal Forecasting of Ferry Passenger Demand
 
 ## Overview
 
-This research project focuses on forecasting monthly ferry passenger demand at **Bakauheni Port, Lampung, Indonesia** using a seasonal time series approach.
+This research applies the **Seasonal Autoregressive Integrated Moving Average (SARIMA)** model to forecast monthly ferry passenger volumes at **Bakauheni Port, Lampung, Indonesia** — one of the busiest ferry ports connecting the islands of Sumatra and Java.
 
-The study applies the **Seasonal Autoregressive Integrated Moving Average (SARIMA)** model to capture recurring passenger movement patterns and support data-driven operational planning in ferry transportation.
+The goal is to support data-driven operational planning, including vessel scheduling, resource allocation, and service optimization based on recurring seasonal demand patterns.
 
 ---
 
 ## Publication
 
-This project was published in the **International Journal of Electronics and Communications System (IJECS)**.
+**Journal:** International Journal of Electronics and Communications System (IJECS)
 
-**Title:** Seasonal Forecasting of Ferry Passenger Demand for Operational Planning: Evidence from Bakauheni Port, Indonesia
+**Volume:** 5, Issue 2, pp. 221–233
 
-**DOI:** 10.24042/ijecs.v5i2.26694
+**DOI:** [10.24042/ijecs.v5i2.26694](https://ejournal.radenintan.ac.id/index.php/IJECS/article/view/26694)
 
-[Read Article](https://ejournal.radenintan.ac.id/index.php/IJECS/article/view/26694)
+**ISSN:** 2798-2610
+
+**Authors:** Khoirul Mizan Abdullah, Luluk Muthoharoh, Eggi Satria, Rahma Neliyana, Presilia, Gymnastiar Al Khoarizmy, Anwar Muslim, Ira Safitri
+
+[Read Full Article](https://ejournal.radenintan.ac.id/index.php/IJECS/article/view/26694)
 
 ---
 
 ## Problem
 
-Bakauheni Port is one of the major ferry transportation hubs connecting Sumatra and Java. Passenger demand at this port changes over time and often increases during specific seasonal periods, such as public holidays, school holidays, and Eid al-Fitr.
+Bakauheni Port serves as a critical gateway between Sumatra and Java. Based on data from BPS Lampung (2023), ferry transport accounts for **52.32% of total passenger movements** in Lampung Province.
 
-Without accurate forecasting, port authorities may face challenges in planning vessel schedules, resource allocation, passenger services, and operational capacity.
+Passenger demand fluctuates heavily throughout the year — surging during Eid al-Fitr, school holidays, and national celebrations — causing congestion and operational strain. Without reliable forecasting, port authorities struggle to plan vessel schedules and allocate resources effectively.
+
+The core challenge: **predict future passenger volumes accurately enough to support proactive operational decisions.**
 
 ---
 
 ## Objective
 
-The objective of this research is to develop a forecasting model that can predict monthly ferry passenger demand at Bakauheni Port and support operational planning through data-driven decision-making.
+Develop and evaluate a SARIMA-based forecasting model that:
+- Captures both trend and seasonal patterns in monthly ferry passenger data
+- Achieves sufficient accuracy to support short- to medium-term planning
+- Provides a practical, interpretable tool for port operational management
 
 ---
 
 ## Dataset
 
-The dataset was collected from the official website of **Statistics Indonesia (BPS) for Lampung Province**.
+<img src="images/time series plot.png" alt="Monthly Ferry Passenger Departures at Bakauheni Port 2014-2019"/>
 
-The data consists of monthly ferry passenger departure records at Bakauheni Port from **2014 to 2019**. The original data was available in infographic format and was transformed into tabular format for analysis.
+*Monthly ferry passenger departures at Bakauheni Port (2014–2019), showing clear seasonal peaks during Eid al-Fitr and holiday periods*
+
+- **Source:** BPS (Statistics Indonesia) — Lampung Province
+- **Coverage:** Monthly ferry passenger departure records, January 2014 – December 2019
+- **Format:** Originally published as infographics, manually extracted into tabular format
+- **Split:** 80% training / 20% testing
+- **Unit:** Thousands of passengers
+
+Sample data range: from ~6,497 passengers (February 2015) to ~200,000+ during peak months.
 
 ---
 
 ## Methodology
 
-The research workflow includes:
+The research followed a structured time series modeling workflow:
 
-1. **Data Collection**
-   Monthly ferry passenger departure data was collected from official BPS Lampung sources.
-
-2. **Data Extraction**
-   Passenger data from infographic format was converted into structured tabular format.
-
-3. **Train-Test Split**
-   The dataset was divided into training and testing subsets using an 80:20 split.
-
-4. **Stationarity Checking**
-   The Augmented Dickey-Fuller (ADF) test was used to assess stationarity.
-
-5. **Data Transformation**
-   Box-Cox transformation and differencing were applied to stabilize variance and remove trend or seasonal components.
-
-6. **Model Identification**
-   ACF and PACF plots were used to identify candidate SARIMA model parameters.
-
-7. **Model Selection**
-   Candidate models were compared using AIC, RMSE, and MAPE.
-
-8. **Model Diagnostics**
-   Residual diagnostics were performed to evaluate model adequacy.
-
-9. **Forecasting**
-   The selected SARIMA model was used to forecast future passenger demand.
+1. **Data Collection** — BPS Lampung official data
+2. **Data Extraction** — Converting infographic format to tabular structure
+3. **Train-Test Split** — 80:20 ratio
+4. **Stationarity Testing** — Augmented Dickey-Fuller (ADF) test
+5. **Variance Stabilization** — Box-Cox transformation (λ optimization)
+6. **Differencing** — Seasonal (lag-12) + first-order differencing to achieve stationarity
+7. **Model Identification** — ACF and PACF plot analysis
+8. **Model Selection** — AIC, MAPE, and RMSE comparison across candidate models
+9. **Model Diagnostics** — Q-Q plot, Ljung-Box, Shapiro-Wilk, Jarque-Bera tests
+10. **Forecasting** — 8-period ahead forecast on test set
 
 ---
 
-## Model
+## Model Selection
 
-The selected model was:
+Six SARIMA candidate models were evaluated. Key comparison results:
 
-**SARIMA (2,1,1)(0,1,0)12**
+| Model | MAPE | RMSE | AIC |
+|---|---|---|---|
+| **(2,1,1)(0,1,0)₁₂** | **0.0477** | **0.001664** | **−511.67** |
+| (0,1,1)(0,1,0)₁₂ | 0.0505 | 0.001802 | −502.39 |
+| (1,1,0)(0,1,0)₁₂ | 0.0515 | 0.221839 | −501.29 |
+| (1,1,1)(0,1,0)₁₂ | 0.0476 | 0.001670 | −512.99 |
+| (1,1,2)(0,1,1)₁₂ | 0.0477 | 0.001665 | −511.54 |
 
-This model was selected because it showed strong performance in capturing seasonal passenger patterns while maintaining good forecasting accuracy.
+The **SARIMA (2,1,1)(0,1,0)₁₂** model was selected based on its combination of lowest AIC, low RMSE, and all statistically significant parameters (AR1, AR2, MA1 all p < 0.05).
+
+---
+
+## Model Diagnostics
+
+The selected model passed all key residual assumption checks:
+
+| Test | Result | Interpretation |
+|---|---|---|
+| Ljung-Box | p = 0.2556 | No significant autocorrelation in residuals ✅ |
+| Shapiro-Wilk | p = 7.145e-06 | Residuals approximately normal ✅ |
+| Jarque-Bera | p = 2.2e-16 | Supports normal distribution of residuals ✅ |
+| Q-Q Plot | Closely aligned with diagonal | Residuals follow normal distribution ✅ |
 
 ---
 
 ## Results
 
-The SARIMA model produced reliable forecasting performance for ferry passenger demand at Bakauheni Port.
+<img src="images/forecasting plot.png" alt="SARIMA Forecasting Plot - Train, Test, and Predicted Passenger Volumes"/>
 
-Key results:
+*Forecasting plot: blue = training data, red = actual test data, green = model predictions*
 
-* **MAPE:** 11.47%
-* **Forecasting Accuracy:** 88.53%
-* The model successfully captured seasonal passenger movement patterns.
-* The model can support short- to medium-term operational planning.
+The SARIMA (2,1,1)(0,1,0)₁₂ model produced:
 
-These results indicate that SARIMA is suitable for forecasting ferry passenger demand with strong seasonal characteristics.
+- **MAPE: 11.47%** → Classified as "good" accuracy (within 10%–20% range)
+- **Forecasting Accuracy: 88.53%**
+- Strong seasonal pattern capture — peaks aligned with Eid al-Fitr and holiday periods
+- Suitable for short- to medium-term operational planning horizons
+
+The forecasting plot confirmed the model tracks actual passenger movement closely, with predicted values (green line) following the test observations (red line) within acceptable deviation bounds.
 
 ---
 
 ## Operational Impact
 
-The forecasting results can help port authorities and ferry operators in:
-
-* Planning vessel schedules
-* Allocating operational resources
-* Anticipating seasonal passenger surges
-* Reducing service delays and congestion
-* Improving passenger service quality
-* Supporting data-driven transportation planning
+The forecasting model can directly support:
+- **Vessel scheduling** — anticipate high-demand periods and pre-assign capacity
+- **Resource allocation** — staff, ticketing, and docking preparation ahead of peak periods
+- **Congestion reduction** — proactive management of passenger surges during Eid al-Fitr and year-end travel
+- **Service quality improvement** — reduced waiting times and better passenger experience
+- **Environmental sustainability** — optimized scheduling reduces unnecessary fuel consumption, aligned with SDG goals on clean energy and resilient infrastructure
 
 ---
 
-## Limitation
+## Limitations
 
-This study only used historical passenger data and did not include external factors such as weather, economic conditions, special events, or policy changes. Future work may improve the model by incorporating external variables or comparing SARIMA with machine learning and deep learning forecasting models.
+- The model uses only historical passenger data — external factors such as weather, economic conditions, or special policy changes are not incorporated
+- Performance may decline over longer forecasting horizons due to accumulated uncertainty
+- Future improvements may include SARIMAX (with external variables) or hybrid deep learning approaches (e.g., SARIMA + LSTM)
 
 ---
 
 ## My Contribution
 
-As one of the authors, I contributed to the literature review, related research analysis, theoretical foundation, and research methodology preparation.
+As one of the authors (G.A.K.), I contributed to:
+- Literature review and analysis of related research
+- Preparation of the theoretical basis and research methodology
 
 ---
 
 ## Tech Stack
 
-* Time Series Forecasting
-* SARIMA
-* ADF Test
-* Box-Cox Transformation
-* ACF and PACF Analysis
-* Model Diagnostics
-* MAPE, RMSE, and AIC Evaluation
-* R / Statistical Time Series Analysis
+- **R** — Time series modeling and statistical analysis
+- **SARIMA** — Seasonal ARIMA modeling
+- **ADF Test** — Stationarity assessment
+- **Box-Cox Transformation** — Variance stabilization
+- **ACF / PACF Analysis** — Model order identification
+- **Ljung-Box, Shapiro-Wilk, Jarque-Bera** — Residual diagnostics
+- **MAPE, RMSE, AIC** — Model evaluation metrics
 
 ---
 
 ## Article Link
 
-[View Published Article](https://ejournal.radenintan.ac.id/index.php/IJECS/article/view/26694)
+[View Published Article — DOI: 10.24042/ijecs.v5i2.26694](https://ejournal.radenintan.ac.id/index.php/IJECS/article/view/26694)
