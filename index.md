@@ -6,6 +6,13 @@ I am interested in machine learning, deep learning, MLOps, AI data quality, comp
 ---
 
 ## Featured Projects
+### [SI-FOREN: Indonesian Public Procurement Intelligence Platform](si_foren.md)
+<img src="images/si_foren_graph.png"/>
+
+An end-to-end procurement intelligence system analyzing **36,135** Indonesian public tenders (Rp 249T). Couples deterministic analytics (DuckDB + NetworkX co-bidding graphs) with Qwen2.5-72B narrative synthesis to expose tender competition patterns and vendor clusters. [Live on Hugging Face Spaces →](https://huggingface.co/spaces/alkhrzmy/si-foren)
+
+---
+
 ### [Zero-Shot Coastal Waste Detection and Material Classification](coastal_waste_detection.md)
 <img src="images/AI_Deteksi_Sampah_Pesisir_Lampung.png"/>
 
