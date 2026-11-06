@@ -40,6 +40,13 @@ Developed a machine learning-based plant disease diagnosis system concept using 
 
 ---
 
+### [Indonesian Sentiment Classification with Class-Weighted IndoBERT](indobert_sentiment.md)
+<img src="images/indobert_sentiment_thumbnail.png"/>
+
+Fine-tuned IndoBERT (Transformer) on scraped Indonesian public facility reviews to tackle severe class imbalance in sentiment data. Implemented class-weighted cross-entropy loss and evaluated via Stratified 5-Fold Cross Validation — achieving a weighted F1-score of **0.88** and accuracy of **86.9%**.
+
+---
+
 ### [Predictive Flood Analytics with Hadoop Ecosystem in Lampung](flood_analytics.md)
 <img src="images/flood_analytics_thumbnail.jpg"/>
 
