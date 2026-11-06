@@ -55,6 +55,13 @@ Built a big data analytics workflow using the Hadoop ecosystem to support flood-
 ---
 
 ## Research / Publication
+### [Forecasting Mutual Fund Prices in Indonesia: Linear vs. Hybrid Approaches](mutual_fund_forecasting.md)
+<img src="images/mutual_fund_actual_vs_predicted.png"/>
+
+Empirical evaluation of regularized regression (ElasticNet + PCA) against a hybrid ElasticNet-LSTM architecture on 897 trading days of Indonesian equity mutual fund prices. Validates Occam's razor via the Diebold-Mariano test (p = 0.2659), proving that residual deep learning provides no statistically significant advantage over parsimonious linear models on persistent financial series (R² = 0.9672).
+
+---
+
 ### [Seasonal Forecasting of Ferry Passenger Demand](ferry_passenger_forecasting.md)
 <img src="images/forecasting plot.png"/>
 
